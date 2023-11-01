@@ -1,0 +1,26 @@
+.overview{
+    position: absolute;
+    top: 75px;
+    left: 5%;
+    right: 5%;
+    bottom: 5%;
+    z-index: 100;
+}
+.overview>ion-card-header{
+    text-align: center;
+}
+.overview>ion-card-content{
+    position: absolute;
+    width: 100%;
+    top: 45px;
+    bottom: 70px;
+    text-align: center;
+    overflow-y: auto;
+}
+.overview>.footer{
+    position: absolute;
+    height: 70px;
+    width: 100%;
+    bottom: 0;
+    padding: 0 16px;
+}

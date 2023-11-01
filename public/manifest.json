@@ -1,0 +1,14 @@
+{
+  "short_name": "Cashflow",
+  "name": "Cashflow",
+  "icons": [
+    {
+      "src": "assets/icon/cash.svg",
+      "type": "image/svg"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
