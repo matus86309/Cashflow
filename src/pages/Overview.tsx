@@ -95,8 +95,8 @@ const Overview: React.FC = () => {
                 </CustomCardHeader>
 
                 <IonRow>
-                  <IonCol className="panel-m">
-                    <IonCardContent>
+                  <IonCol>
+                    <IonCardContent  className="panel-m">
                       {chartType === "1" ? (
                         <OverviewChart1 />
                       ) : chartType === "2" ? (

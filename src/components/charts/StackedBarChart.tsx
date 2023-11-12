@@ -30,6 +30,8 @@ const StackedBarChart: React.FC<{
       dataNotEmpty = dataNotEmpty || !dp.noData;
     });
   });
+
+  // x and y values of all levels
   const values: { x: Date[]; y: number[] } = props.levels
     .flatMap((level) => level.map(({ x, y }) => ({ x, y })))
     .reduce(
@@ -40,27 +42,37 @@ const StackedBarChart: React.FC<{
       { x: [], y: [] }
     );
 
-  const domainEnd = newDate();
-  domainEnd.setMonth(domainEnd.getMonth(), 15);
-  const domainStart = newDate(Math.min(...values.x.map((d) => d.getTime())));
-  domainStart.setMonth(domainStart.getMonth() - 1, 15);
-  const domainViewStart = newDate();
-  domainViewStart.setMonth(domainViewStart.getMonth() - 6, 15);
+  const getDomainXEnd = () =>
+    newDate(new Date().setMonth(new Date().getMonth(), 15));
 
-  const domain: { x: DomainTuple; y: DomainTuple } = {
-    x: [domainStart, domainEnd],
-    y: values.y.reduce(
+  const getDomainXStart = () => {
+    const domainStart = newDate(Math.min(...values.x.map((d) => d.getTime())));
+    domainStart.setMonth(domainStart.getMonth() - 1, 16);
+    return domainStart;
+  };
+
+  const getZoomDomainXStart = () =>
+    newDate(new Date().setMonth(new Date().getMonth() - 6, 16));
+
+  const getDomainY = (): DomainTuple => {
+    return values.y.reduce(
       (extremes, value) => [
         extremes[0] * 1.1 < value * 1.1 ? extremes[0] : value * 1.1,
         extremes[1] * 1.1 > value * 1.1 ? extremes[1] : value * 1.1,
       ],
       [0, 0]
-    ),
+    );
   };
+
+  const [domain, setDomain] = useState<{ x: DomainTuple; y: DomainTuple }>({
+    x: [getDomainXStart(), getDomainXEnd()],
+    y: getDomainY(),
+  });
+
   const [zoomDomain, setZoomDomain] = useState<{
     x: DomainTuple;
     y: DomainTuple;
-  }>({ x: [domainViewStart, domainEnd], y: domain.y });
+  }>({ x: [getZoomDomainXStart(), getDomainXEnd()], y: getDomainY() });
 
   const [chartSize, setChartSize] = useState(getChartSize());
 
@@ -69,18 +81,34 @@ const StackedBarChart: React.FC<{
     return generateColorScale(n, props.color);
   };
 
+  //
+  //     Effects
+  //
+
   useEffect(() => {
+    // adjust Chart proportions on window resize
     const handleResize = () => {
       setChartSize(getChartSize());
     };
-
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  if (domainStart === domainEnd || dataNotEmpty === false)
+
+  useEffect(() => {
+    // adjust chart domain on data change
+    setDomain({
+      x: [getDomainXStart(), getDomainXEnd()],
+      y: getDomainY(),
+    });
+    setZoomDomain({
+      x: [getZoomDomainXStart(), getDomainXEnd()],
+      y: getDomainY(),
+    });
+  }, [props.levels]);
+
+  if (getDomainXStart() === getDomainXEnd() || dataNotEmpty === false)
     return <AddLogButton />;
   return (
     <div className="chart">

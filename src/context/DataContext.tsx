@@ -288,9 +288,9 @@ export const DataProvider: React.FC<{ children?: ReactNode }> = (props) => {
   // update current data when mock data setting is changed (switch between saved and mock)
   useEffect(() => {
     const d = getData();
-    setDebts(d.debts);
-    setDBLogs(d.DBLogs);
-    setCategories(d.categories);
+    setDebts({ ...d.debts });
+    setDBLogs([...d.DBLogs]);
+    setCategories({ ...d.categories });
   }, [savedSettings[3]]);
 
   const context = {
