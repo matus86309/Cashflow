@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 
 import { generateColorScale } from "../../theme/colorScales";
 import { getChartSize } from "../global";
+import NoLogsThisMonth from "../space_fillers/NoLogsThisMonth";
 
 const BarChart: React.FC<{
   data: ChartLineData;
@@ -83,7 +84,7 @@ const BarChart: React.FC<{
         </VictoryStack>
       </VictoryChart>
     );
-  else return props.noData ? props.noData : <div />;
+  else return props.noData ? props.noData : <NoLogsThisMonth />;
 };
 
 export default BarChart;

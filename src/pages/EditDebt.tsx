@@ -45,6 +45,7 @@ const EditDebt: React.FC = () => {
   useEffect(() => {
     if (ogDebt !== undefined) {
       setDebt(ogDebt);
+      setAmount(`${ogDebt.amount}`)
     }
     if (
       ogDebt === undefined &&

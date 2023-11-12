@@ -34,7 +34,8 @@ const settingsList = [
   },
   {
     title: "Mock data",
-    subTitle: "Use a premade dataset to showcase app capabilities",
+    subTitle:
+      "Use a premade dataset to showcase app capabilities. Changes made to mock data won't be saved and won't affect saved data",
   },
 ];
 

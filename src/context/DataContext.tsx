@@ -1,7 +1,8 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 
-import { currencySymbols, logTypes, newDate } from "../components/global";
 import { mockData } from "../components/mock_data";
+
+import { currencySymbols, logTypes, newDate } from "../components/global";
 
 const Data = createContext<{
   categories: Categories;
@@ -76,7 +77,7 @@ export const DataProvider: React.FC<{ children?: ReactNode }> = (props) => {
 
   const [savedSettings, setSavedSettings] = useState<Settings>(getSettings());
   const getData = () => {
-    if (savedSettings[2]) return mockData;
+    if (savedSettings[3]) return mockData;
     else {
       const dataJSON = localStorage.getItem("data");
       return {
@@ -290,7 +291,7 @@ export const DataProvider: React.FC<{ children?: ReactNode }> = (props) => {
     setDebts(d.debts);
     setDBLogs(d.DBLogs);
     setCategories(d.categories);
-  }, [savedSettings[2]]);
+  }, [savedSettings[3]]);
 
   const context = {
     categories,

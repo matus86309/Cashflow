@@ -14,8 +14,6 @@ import {
   IonModal,
   IonPage,
   IonRow,
-  IonSelect,
-  IonSelectOption,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
@@ -25,7 +23,7 @@ import { pencil } from "ionicons/icons";
 
 import CustomCardHeader from "../components/CustomCardHeader";
 import HomeBarChart from "../components/charts/HomeBarChart";
-import HomeChart2 from "../components/HomeChart2";
+import HomePieChartPanel from "../components/HomePieChartPanel";
 import Gray from "../components/text_styles/Gray";
 import Data from "../context/DataContext";
 
@@ -85,30 +83,7 @@ const Home: React.FC = () => {
     ];
   };
 
-  const prepData = (): { name: string; balance: number }[] => {
-    let unsortedData = getMonth(DBLogs, month)[overviewType].map((l) => ({
-      category: l.category.name,
-      amount: l.amount,
-    }));
-    const sortedData = [];
-
-    // Get total balance of each income category from separate logs
-    while (unsortedData.length > 0) {
-      const curName = unsortedData[0].category;
-      sortedData.push({
-        name: curName,
-        balance: +unsortedData
-          .reduce(
-            (acc, cur) => (acc += cur.category === curName ? cur.amount : 0),
-            0
-          )
-          .toFixed(2),
-      });
-      unsortedData = unsortedData.filter((i) => i.category !== curName);
-    }
-    // return data ordered from biggest to smallest absolute value of balance
-    return sortedData.sort((a, b) => Math.abs(b.balance) - Math.abs(a.balance));
-  };
+  
   return (
     <IonPage>
       <IonHeader>
@@ -159,51 +134,7 @@ const Home: React.FC = () => {
               </IonCard>
             </IonCol>
           </IonRow>
-          <IonRow>
-            <IonCol>
-              <IonCard>
-                <IonRow>
-                  <IonCol>
-                    <IonRow>
-                      <CustomCardHeader>
-                        <div className="header-select-wrap">
-                          <IonSelect
-                            className="header-select"
-                            value={overviewType}
-                            onIonChange={(e) =>
-                              setOverviewType(e.detail.value!)
-                            }
-                          >
-                            {logTypes.map((l, index) => (
-                              <IonSelectOption value={l} key={index}>
-                                {fromLogType(l)}
-                              </IonSelectOption>
-                            ))}
-                          </IonSelect>
-                        </div>
-                      </CustomCardHeader>
-                    </IonRow>
-                    <HomeChart2
-                      data={prepData()}
-                      color={fromLogType(overviewType, [
-                        "green",
-                        "red",
-                        "yellow",
-                      ])}
-                    />
-                    {/* <RowLogs4
-                      data={prepData()}
-                      color={fromLogType(overviewType, [
-                        "green",
-                        "red",
-                        "yellow",
-                      ])}
-                    /> */}
-                  </IonCol>
-                </IonRow>
-              </IonCard>
-            </IonCol>
-          </IonRow>
+          <HomePieChartPanel overviewTypeState={[overviewType, setOverviewType]} month={month} />
         </IonGrid>
       </IonContent>
 

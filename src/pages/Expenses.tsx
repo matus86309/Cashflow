@@ -176,8 +176,8 @@ const Expenses: React.FC = () => {
                   </CustomCardHeader>
                 </IonRow>
                 <IonRow>
-                  <IonCol className="panel-m">
-                    <IonCardContent>
+                  <IonCol>
+                    <IonCardContent className="panel-m">
                       <StackedBarChart
                         levels={getChartData()}
                         color="red"

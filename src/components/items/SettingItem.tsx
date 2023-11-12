@@ -45,7 +45,7 @@ const SettingItem: React.FC<{
                   style={{
                     fontSize:
                       props.options[props.value].length < 2 ? "1.5em" : ".9em",
-                    width: (props.options[props.value].length * .9 + 2) + "em",
+                    width: props.options[props.value].length + 3 + "em",
                   }}
                   value={props.value}
                   onIonChange={(e) => props.setValue(e.detail.value)}

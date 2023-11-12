@@ -46,7 +46,7 @@ const LineChart: React.FC<{
   domainStart.setHours(0);
   const domainViewStart = newDate();
 
-  domainViewStart.setMonth(domainViewStart.getMonth() - 6, 15);
+  domainViewStart.setMonth(domainViewStart.getMonth() - 6, 20);
 
   const domain: { x: DomainTuple; y: DomainTuple } = {
     x: [domainStart, domainEnd],
@@ -92,7 +92,7 @@ const LineChart: React.FC<{
             allowZoom={false}
             allowPan={domainViewStart > domainStart}
             voronoiPadding={50}
-            zoomDimension="x"
+            voronoiDimension="x"
           />
         }
       >
@@ -108,7 +108,7 @@ const LineChart: React.FC<{
             }}
             domain={domain}
             data={line.data}
-            labelComponent={<VictoryTooltip constrainToVisibleArea />}
+            labelComponent={<VictoryTooltip />}
             key={index}
           />
         ))}
