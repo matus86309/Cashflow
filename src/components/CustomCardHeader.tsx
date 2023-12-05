@@ -8,7 +8,7 @@ const CustomCardHeader: React.FC<{
 }> = (props) => {
   const router = useIonRouter();
   return (
-    <div style={{ margin: "2vh 3vh 0", display: "flex", justifyContent:"center" }}>
+    <div style={{ margin: "2vh 3vh 0"}} className="content-center">
       {props.link !== undefined && (
         <IonIcon
           src={chevronBack}
@@ -26,11 +26,10 @@ const CustomCardHeader: React.FC<{
 
       <IonText
         style={{
-          display: "block",
-          float: "left",
           fontSize: "1.25em",
         }}
         color="dark"
+        mode="md"
       >
         {props.children}
       </IonText>

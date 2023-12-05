@@ -59,6 +59,7 @@ const AddDebt: React.FC = () => {
 
     setAmount("");
     setName("");
+    setNote("")
   };
 
   const changeName = (text: string) => {

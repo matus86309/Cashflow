@@ -21,7 +21,14 @@ const DebtItem: React.FC<{
           {props.debt.name}
         </IonCol>
         <IonCol sizeMd="3" className="content-center ion-hide-md-down">
-          {props.debt.date === undefined ? "---" : props.debt.date}
+          {props.debt.date === undefined
+            ? "---"
+            : `${new Date(props.debt.date).toLocaleDateString("default", {
+                month: "short",
+              })} ` +
+              props.debt.date.slice(8, 10) +
+              " " +
+              props.debt.date.slice(0, 4)}
         </IonCol>
         <IonCol sizeMd="3" className="content-center ion-hide-md-down">
           {props.debt.until === undefined ? "---" : props.debt.until}

@@ -2,6 +2,7 @@ import {
   VictoryAxis,
   VictoryBar,
   VictoryChart,
+  VictoryContainer,
   VictoryStack,
   VictoryTooltip,
 } from "victory";
@@ -42,6 +43,9 @@ const BarChart: React.FC<{
         height={chartSize.height}
         width={chartSize.width}
         domainPadding={{ x: chartSize.width * 0.15, y: chartSize.height * 0.1 }}
+        containerComponent={
+          <VictoryContainer style={{ touchAction: "auto" }} />
+        }
       >
         <VictoryAxis
           dependentAxis

@@ -798,8 +798,46 @@ export const mockData = (() => {
       ],
     },
     debts: {
-      lent: [],
-      borrowed: [],
+      lent: [
+        {
+          amount: 10,
+          date: monthNames[2] + "-12",
+          id: 1701778988843,
+          name: "Thomas",
+          note: "Dinner",
+          type: "lent",
+          until: undefined,
+        },
+        {
+          amount: 15,
+          date: monthNames[0] + "-14",
+          id: 1701779071849,
+          name: "Sofia",
+          note: "Train",
+          type: "lent",
+          until: undefined,
+        },
+      ],
+      borrowed: [
+        {
+          amount: 25000,
+          date: "2022-09-01",
+          id: 1701781321506,
+          name: "Student Loan",
+          note: "",
+          type: "borrowed",
+          until: "2032-10-01",
+        },
+        {
+          amount: 12.6,
+          date: monthNames[1] + "-28",
+          id: 1701781341218,
+          name: "Bruno",
+          note: "Cinema",
+          type: "borrowed",
+          until: undefined,
+        },
+      ],
     },
   };
 })();

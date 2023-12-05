@@ -122,6 +122,7 @@ const StackedBarChart: React.FC<{
             zoomDomain={zoomDomain}
             onZoomDomainChange={setZoomDomain}
             allowZoom={false}
+            style={{ touchAction: "auto" }}
           />
         }
       >

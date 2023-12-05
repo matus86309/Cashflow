@@ -1,4 +1,4 @@
-import { VictoryPie, VictoryTooltip } from "victory";
+import { VictoryContainer, VictoryPie, VictoryTooltip } from "victory";
 
 import { colorScaleDefault, generateColorScale } from "../../theme/colorScales";
 
@@ -61,6 +61,9 @@ const PieChart: React.FC<{
             }}
             cornerRadius={1}
           />
+        }
+        containerComponent={
+          <VictoryContainer style={{ touchAction: "auto" }} />
         }
         data={getChartData()}
         colorScale={getColorScale()}

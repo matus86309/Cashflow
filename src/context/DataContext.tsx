@@ -108,7 +108,7 @@ export const DataProvider: React.FC<{ children?: ReactNode }> = (props) => {
 
   // saves Logs, Categories and Debts into designated storage
   const saveData = () => {
-    if (!savedSettings[2]) {
+    if (!savedSettings[3]) {
       localStorage.setItem(
         "data",
         JSON.stringify({
@@ -155,6 +155,7 @@ export const DataProvider: React.FC<{ children?: ReactNode }> = (props) => {
   const addDebt = (debt: Debt) => {
     debts[debt.type].push(debt);
     setDebts({ ...debts });
+    console.log(debts)
     saveData();
   };
 

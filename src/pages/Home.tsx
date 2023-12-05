@@ -99,11 +99,6 @@ const Home: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol>
-              <IonCard>{/* <NewLineChart /> */}</IonCard>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
               <IonCard>
                 <CustomCardHeader>
                   <IonTitle className="header-text">

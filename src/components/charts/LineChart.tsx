@@ -116,6 +116,8 @@ const LineChart: React.FC<{
             allowPan={getZoomDomainXStart() > getDomainXStart()}
             voronoiPadding={50}
             voronoiDimension="x"
+            zoomDimension="x"
+            style={{ touchAction: "auto" }}
           />
         }
       >
